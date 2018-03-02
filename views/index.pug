@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Salah
+        script(src="https://code.jquery.com/jquery-3.3.1.min.js")
+        script(src="/js/index.js")
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        div(class="search_bar")
+            select(id="smethod", name="Method")
+                option(value="MWL") Muslim World League
+                option(value="Hanafi") MWL + Hanafi Asr
+                option(value="ISNA") Islamic Society of North America (ISNA)
+                option(value="Egypt") Egyptian General Authority of Survey
+                option(value="Makkah") Umm Al-Qura University, Makkah
+                option(value="Karachi") University of Islamic Sciences, Karachi
+                option(value="Tehran") Institute of Geophysics, University of Tehran
+                option(value="Jafari") Shia Ithna-Ashari, Leva Institute, Qum
+                
+
+        div(class="container")
+            div(class="inner")
+                table(class="sbox")
+                    tr
+                        td(class="name") Imsak
+                        td
+                        td(class="time")=imsak
+                    tr
+                        td(class="name") Fajr
+                        td
+                        td(class="time")=fajr
+                    tr
+                        td(class="name") Sunrise
+                        td
+                        td(class="time")=sunrise
+                    tr
+                        td(class="name") Dhuhr
+                        td
+                        td(class="time")=dhuhr
+                    tr
+                        td(class="name") Asr
+                        td
+                        td(class="time")=asr
+                    tr
+                        td(class="name") Maghrib
+                        td
+                        td(class="time")=maghrib
+                    tr
+                        td(class="name") Isha
+                        td
+                        td(class="time")=isha
+
+        div(onclick="reload();", id="button")
+            p Reload

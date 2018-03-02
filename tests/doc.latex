@@ -1,0 +1,9 @@
+\begin{equation*}
+T( a) =\frac{1}{15}\arccot\left(\dfrac{-\sin( a) -\sin( L) sin( D)}{cos( L) \ cos( D)}\right)
+\end{equation*}
+
+
+\begin{equation*}
+A( t) =\frac{1}{15}\arccos\left(\dfrac{\sin(\arccot( t\ +\ \tan( L-D))) \ -\sin( L)\sin( D)}{cos( L) \ cos( D)}\right)
+\end{equation*}
+
