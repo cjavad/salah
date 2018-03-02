@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background: teal;
+            margin: 0 auto;
+            width: 50%;
+        }
+
+        #container {
+            padding: 10px;
+            margin: 100px;
+            color: wheat;
+            background: black;
+        }
+
+        #wbox {
+            padding: 20px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        
+        @media only screen and (max-device-width: 500px) {
+            body {
+                width: 100%;
+            }
+        }
+
+    </style>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="/js/requests.js"></script>
+    <script>
+        function cll(pt) {
+            document.getElementById("fajr").innerText = pt.fajr;
+            document.getElementById("shuruk").innerText = pt.sunrise;
+            document.getElementById("dhuhr").innerText = pt.dhuhr;
+            document.getElementById("asr").innerText = pt.asr;
+            document.getElementById("maghrib").innerText = pt.maghrib;
+            document.getElementById("isha").innerText = pt.isha;
+        };
+
+        window.onload = function() {
+            gettimes(55, 12, "Hanafi", function (res){
+                cll(res.times);
+            });
+        };
+    </script>
+    <title>Example</title>
+</head>
+<body>
+    <h1>This page is an example on how you could use our api</h1>
+    <div id="container">
+        <div id="wbox">
+            <div class="s">
+                <p>Fajr</p>
+                <span id="fajr">-----</span>
+            </div>
+            <div class="s">
+                <p>Shuruk</p>
+                <span id="shuruk">-----</span>
+            </div>
+            <div class="s">
+                <p>Dhuhr</p>
+                <span id="dhuhr">-----</span>
+            </div>
+            <div class="s">
+                <p>'Asr</p>
+                <span id="asr">-----</span>
+            </div>
+            <div class="s">
+                <p>Maghrib</p>
+                <span id="maghrib">-----</span>
+            </div>
+            <div class="s">
+                <p>Isha</p>
+                <span id="isha">-----</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
