@@ -54,24 +54,25 @@ function calc(query, lat, lng, timezone) {
 // set view engine to pug
 app.set("view engine", "pug");
 
+// use static path
+app.use(express.static(path.join(__dirname + "/public/")));
+
 // use middleware
 app.use(bodyparser.urlencoded({ extended: true }));
 
 // set headers and log request
 app.use((req, res, next) => {
+    // set headers
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
     // force https
     if (req.headers['x-forwarded-proto'] != 'https' && process.env["FORCEHTTPS"]) {
         res.redirect(302, 'https://' + req.hostname + req.originalUrl);
     }
-    // set headers
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     // and continue
     next();
 });
-
-// use static path
-app.use(express.static(path.join(__dirname + "/public/")));
 
 // index page
 app.get("/", (req, res) => {
