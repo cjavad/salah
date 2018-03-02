@@ -94,3 +94,19 @@ The other parameter date, takes a javascript date string which is formatted like
 Thu Feb 13 2016 13:23:32 is also a valid time string
 ```
 If not specified then you will rely on server time which can be very inacurate
+
+## Notice
+PrayTimes.js: Prayer Times Calculator (ver 2.3)
+Copyright (C) 2007-2011 PrayTimes.org
+
+Developer: Hamid Zarrabi-Zadeh
+License: GNU LGPL v3.0
+
+TERMS OF USE:
+	Permission is granted to use this code, with or
+	without modification, in any website or application
+	provided that credit is given to the original work
+	with a link back to PrayTimes.org.
+
+This program is distributed in the hope that it will
+be useful, but WITHOUT ANY WARRANTY.
