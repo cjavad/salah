@@ -9,7 +9,7 @@ table tr td:empty {
     width: 0px;
 }
 
-.search_bar {
+.bar {
     position: absolute;
 }
 
@@ -40,11 +40,20 @@ table tr td:empty {
     text-decoration: underline springgreen;
 }
 
+
 .name {
     font-weight: bold;
 }
 .time {
     font-weight: 100;
+}
+
+footer {
+    padding-left: 10px;
+    padding-right: 10px;
+    position: absolute;
+    background: darkslategray;
+    bottom: 0;
 }
 
 @media only screen and (max-device-width: 480px) {
