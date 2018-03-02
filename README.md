@@ -11,7 +11,10 @@ website.
 
 NOTE: If you were wondering what was going on with all the params, then i can tell you that
 the salah times for the webpage is also calculated server wise and does not use the api, but
-`/ajax.html` contains `/js/requests.js` which contains code for an ajax request.
+`/ajax.html` contains `/js/requests.js` which contains code for an ajax request, and `/example.html`
+for a full working example.
+
+Another NOTE: There seem to be a problem in firefox which disables navigator.geolocation, to fix this you must run firefox as admin.
 
 # Api
 The base enpoint is `/api/:lat/:lng/:timezone` so in copenhagen that would be:
@@ -98,7 +101,36 @@ So all the following is valid
  03 19 2017
  03-19/2017
 ```
-If not specified then you will rely on server time which is very inacurate.
+So
+```http
+GET /api/55/12/+1/?method=Hanafi&date=03-02/2018
+```
+also gives
+```json
+{
+    "date":"Fri Mar 02 2018",
+    "status":200,
+    "timezone":1,
+    "method":"Hanafi",
+    "coordinates":{
+        "latitude":55,
+        "longitude":22
+    },
+    "times":{
+        "imsak":"04:09",
+        "fajr":"04:19",
+        "sunrise":"06:20",
+        "dhuhr":"11:44",
+        "asr":"15:12",
+        "sunset":"17:09",
+        "maghrib":"17:09",
+        "isha":"19:03",
+        "midnight":"23:45"
+    }
+}
+```
+
+NOTE: If not specified then you will rely on server time which is very inacurate.
 
 ## Notice
 PrayTimes.js: Prayer Times Calculator (ver 2.3)
