@@ -9,6 +9,10 @@ The main website `/` only uses your location to calculate the praytimes as preci
 posible. It is also only meant as a example and should never be used as a production ready
 website.
 
+NOTE: If you were wondering what was going on with all the params, then i can tell you that
+the salah times for the webpage is also calculated server wise and does not use the api
+for how to use the api see ajax.html
+
 # Api
 The base enpoint is `/api/:lat/:lng/:timezone` so in copenhagen that would be:
 ```http
