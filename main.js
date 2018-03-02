@@ -140,7 +140,8 @@ app.get("/api/:lat/:lng/:timezone", (req, res) => {
     });
 });
 
+var port = process.env.PORT || 80;
 
-app.listen(80, () => {
-    console.log("Listening on port 80");
+app.listen(port, () => {
+    console.log("Listening on port", port);
 });
