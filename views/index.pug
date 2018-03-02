@@ -8,19 +8,25 @@ html(lang="en")
         script(src="/js/index.js")
         link(rel="stylesheet", href="/css/style.css")
     body
-        div(class="bar")
-            select(id="smethod", name="Method")
-                option(value="MWL") Muslim World League
-                option(value="Hanafi") MWL + Hanafi Asr
-                option(value="ISNA") Islamic Society of North America (ISNA)
-                option(value="Egypt") Egyptian General Authority of Survey
-                option(value="Makkah") Umm Al-Qura University, Makkah
-                option(value="Karachi") University of Islamic Sciences, Karachi
-                option(value="Tehran") Institute of Geophysics, University of Tehran
-                option(value="Jafari") Shia Ithna-Ashari, Leva Institute, Qum
-                
-
         div(class="container")
+            div(class="bar")
+                select(id="smethod", name="Method")
+                    option(value="MWL") Muslim World League
+                    option(value="Hanafi") MWL + Hanafi Asr
+                    option(value="ISNA") Islamic Society of North America (ISNA)
+                    option(value="Egypt") Egyptian General Authority of Survey
+                    option(value="Makkah") Umm Al-Qura University, Makkah
+                    option(value="Karachi") University of Islamic Sciences, Karachi
+                    option(value="Tehran") Institute of Geophysics, University of Tehran
+                    option(value="Jafari") Shia Ithna-Ashari, Leva Institute, Qum
+
+                div
+                    button(id="button", onclick="reload();") Reload
+
+                //   div(onclick="reload();", id="button")
+                //   p Reload
+
+
             div(class="inner")
                 table(class="sbox")
                     tr
@@ -51,9 +57,6 @@ html(lang="en")
                         td(class="name") Isha
                         td
                         td(class="time")=isha
-
-        div(onclick="reload();", id="button")
-            p Reload
         
     footer
         p

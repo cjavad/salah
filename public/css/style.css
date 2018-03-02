@@ -1,5 +1,5 @@
 body {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: Arial, Helvetica, sans-serif;
     margin: 0 auto;
     width: 50%;
     background-color: #557ea1;
@@ -9,11 +9,40 @@ table tr td:empty {
     width: 0px;
 }
 
-.bar {
+.input {
     position: absolute;
 }
 
+.bar {
+    /*
+    outline-color: aliceblue;
+    outline-style: groove;
+    outline-offset: 6px;
+    outline-width: 4px;
+    background-color: #3c678d;
+    */
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    position: sticky;
+}
+
+.bar select {
+    background: #2c3e50;
+    border: 0;
+    line-height: 3;
+    width: 20em;
+    overflow: hidden;
+    border-radius: .25em;
+    margin: 0;
+    padding: 0 0 0 .5em;
+    height: 3em;
+    color: white;
+    cursor: pointer;
+}
+
 .container {
+    margin-top: 30px;
     align-items: center;
 }
 
@@ -22,7 +51,6 @@ table tr td:empty {
     outline-width: 10px;
     outline-style: groove;
     padding: 100px;
-    margin-top: 200px;
     background: #f8f8f8;
 }
 
@@ -31,12 +59,20 @@ table tr td:empty {
     width: 50%;
 }
 
-#button p {
-    color: wheat;
+#button {
+    text-indent: -5px;
+    border: 0;
+    width: 5em;
+    border-radius: .25em;
+    margin: 0;
+    padding: 0 0 0 .5em;
+    height: 3em;
+    color: white;
+    position: absolute;
 }
 
-#button p:hover {
-    color: springgreen;
+#button:hover {
+    background: springgreen;
     text-decoration: underline springgreen;
 }
 
@@ -49,13 +85,35 @@ table tr td:empty {
 }
 
 footer {
+    border-radius: .25em;
     padding-left: 10px;
     padding-right: 10px;
-    position: absolute;
+    position: fixed;
     background: darkslategray;
     bottom: 0;
+    right: 0;
 }
 
+/* For "smaller" screens */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px)  {
+    body {
+        width: 80%;
+        zoom: 170%;
+    }
+
+}
+
+/* For Tablets */
+@media only screen and (min-device-width: 500px) and (max-device-width: 768px) {
+    body {
+        zoom: 130%;
+        width: 80%;
+    }
+
+}
+
+
+/* For mobile phones */
 @media only screen and (max-device-width: 480px) {
     body {
         width: 80%;
@@ -79,9 +137,18 @@ footer {
         margin-top: 100px;
     }
 
+    .bar {
+        flex-direction: column;
+    }
+
 
     .sbox {
         width: 100%;
     }
 
+    footer {
+        border-radius: 0;
+        width: auto;
+        position: fixed;
+    }
 }

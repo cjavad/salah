@@ -1,17 +1,17 @@
 # About
 This program can calculate the muslim prayertimes and provides an api that can do so. 
-I created this program because i could not find one good api that could provide accurate
-date for a specific location, and those who did exist where closed-sourced so you couldn't deploy
+I created this program because i could not find a good api that could provide accurate
+data for a specific location and time, and those who did exist, where closed-sourced so you couldn't deploy
 one of your own instances.
 
 ## Web
-The main website `/` only uses your location to calculate the praytimes as precise as 
+The main website at `/` only uses your location to calculate the praytimes as precise as 
 posible. It is also only meant as a example and should never be used as a production ready
 website.
 
 NOTE: If you were wondering what was going on with all the params, then i can tell you that
-the salah times for the webpage is also calculated server wise and does not use the api
-for how to use the api see ajax.html
+the salah times for the webpage is also calculated server wise and does not use the api, but
+`/ajax.html` contains `/js/requests.js` which contains code for an ajax request.
 
 # Api
 The base enpoint is `/api/:lat/:lng/:timezone` so in copenhagen that would be:
@@ -22,7 +22,7 @@ GET /api/55/22/+1
 which would give you a response like this
 ```json
 {
-    "date":"Fri Mar 02 2018 11:45:30 GMT+0100 (CET)",
+    "date":"Fri Mar 02 2018",
     "status":200,
     "timezone":1,
     "method":"MWL",
@@ -65,7 +65,7 @@ GET /api/55/12/+1/?method=Hanafi
 And the response would be like this
 ```json
 {
-    "date":"Fri Mar 02 2018 11:56:47 GMT+0100 (CET)",
+    "date":"Fri Mar 02 2018",
     "status":200,
     "timezone":1,
     "method":"Hanafi",
@@ -87,13 +87,18 @@ And the response would be like this
 }
 ```
 
-The other parameter date, takes a javascript date string which is formatted like this:
+The other parameter date, takes a javascript date string but the following format is recommended:
 ```
-[Weekday] [Month] [Day] [Year] [Hour]:[Minutes]:[Seconds] GMT+[Gmttimezone] [tmformat]
+[Month] [Date] [Year]
 
-Thu Feb 13 2016 13:23:32 is also a valid time string
+So all the following is valid
+
+ Mar 19 2017
+ Mar-19-2017
+ 03 19 2017
+ 03-19/2017
 ```
-If not specified then you will rely on server time which can be very inacurate
+If not specified then you will rely on server time which is very inacurate.
 
 ## Notice
 PrayTimes.js: Prayer Times Calculator (ver 2.3)

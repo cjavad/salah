@@ -1,4 +1,5 @@
 const express = require("express"); // require expressjs
+const compression = require("compression"); // compress stream
 const bodyparser = require("body-parser"); // bodyparser
 const path = require("path"); // and path
 
@@ -9,43 +10,43 @@ const praytimes = require("./lib/praytimes.js");
 var app = express();
 
 
-function calc(query, lat, lng, timezone) {
+function calc(config, lat, lng, timezone) {
     // init class
     var times = new praytimes();
     var methods = times.getMethods();
 
     // set default configuration
-    var config = methods["MWL"];
+    var params = methods["MWL"];
 
     // get date
     var date = new Date();
 
     // select method (params)
-    if (typeof methods[query.method] === "object") {
-        config = methods[query.method].params;
+    if (typeof methods[config.method] === "object") {
+        params = methods[config.method].params;
     } else {
         // override method
-        query.method = "MWL";
+        config.method = "MWL";
     }
 
     // parse date if needed
-    if (query.date) {
-        var parsed = Date.parse(query.date);
+    if (config.date) {
+        var parsed = Date.parse(config.date);
 
-        if (isNaN(query.date) && !isNaN(parsed)) {
+        if (isNaN(config.date) && !isNaN(parsed)) {
             date = new Date(parsed);
         }
     }
 
 
-    // set config
-    times.adjust(config);
+    // configure object
+    times.adjust(params);
 
-    // get times
+    // calculate times
     var pt = times.getTimes(date, [lat, lng], timezone);
 
     return {
-        method: query.method,
+        method: config.method,
         date: date,
         pt: pt
     };
@@ -59,10 +60,13 @@ app.use(express.static(path.join(__dirname + "/public/")));
 
 // use middleware
 app.use(bodyparser.urlencoded({ extended: true }));
+app.use(compression({level: 1}));
 
 // set headers and log request
 app.use((req, res, next) => {
     // set headers
+    res.header("Server", "Enterprise");
+    res.header("X-Powered-By", "slowmo");
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
@@ -96,7 +100,6 @@ app.get("/", (req, res) => {
     var {method, date, pt} = calc(req.query, lat, lng, timezone);
 
     res.render("index", pt);
-
 });
 
 
@@ -132,7 +135,7 @@ app.get("/api/:lat/:lng/:timezone", (req, res) => {
 
     // send response object
     res.status(status_code).send({
-        date: date.toString(),
+        date: date.toDateString(),
         status: status_code,
         timezone: timezone,
         method: method,
@@ -144,6 +147,7 @@ app.get("/api/:lat/:lng/:timezone", (req, res) => {
     });
 });
 
+// set port
 var port = process.env.PORT || 80;
 
 app.listen(port, () => {
