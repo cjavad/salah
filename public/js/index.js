@@ -42,6 +42,7 @@ function reload() {
     });
 }
 
+
 function load() {
     $("#smethod").val(getParameterByName("method") || "MWL");
 }

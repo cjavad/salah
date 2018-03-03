@@ -10,7 +10,7 @@ html(lang="en")
     body
         div(class="container")
             div(class="bar")
-                select(id="smethod", name="Method")
+                select(id="smethod", name="Method", onchange="reload();")
                     option(value="MWL") Muslim World League
                     option(value="Hanafi") MWL + Hanafi Asr
                     option(value="ISNA") Islamic Society of North America (ISNA)
@@ -20,11 +20,6 @@ html(lang="en")
                     option(value="Tehran") Institute of Geophysics, University of Tehran
                     option(value="Jafari") Shia Ithna-Ashari, Leva Institute, Qum
 
-                div
-                    button(id="button", onclick="reload();") Reload
-
-                //   div(onclick="reload();", id="button")
-                //   p Reload
 
 
             div(class="inner")
