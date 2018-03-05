@@ -38,11 +38,11 @@ function maps(address, callback) {
 function reload() {
     var method = $("#smethod").val();
     // check for old cordinates
-    var lat = getParam("lat");
+    var lat = getParam("lat");  
     var lng = getParam("lng");
 
     // if they aren't numbers get current location
-    if (isNaN(lat) && isNaN(lng)) {
+    if (lat === null && lng === null) {
         getlocation(function(lat, lng) {
             redirect(lat, lng, method);
         });
