@@ -11,7 +11,7 @@ function getlocation(callback) {
     });
 }
 
-function getParameterByName(name, url) {
+function getParam(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
     var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
@@ -34,17 +34,25 @@ function maps(address, callback) {
 }
 
 */
-
+// reload page with query params
 function reload() {
     var method = $("#smethod").val();
-    getlocation(function(lat, lng) {
+    // check for old cordinates
+    var lat = getParam("lat");
+    var lng = getParam("lng");
+
+    // if they aren't numbers get current location
+    if (isNaN(lat) && isNaN(lng)) {
+        getlocation(function(lat, lng) {
+            redirect(lat, lng, method);
+        });
+    } else {
+        // else use the old cordinates
         redirect(lat, lng, method);
-    });
+    }
 }
 
-
-function load() {
-    $("#smethod").val(getParameterByName("method") || "MWL");
-}
-
-window.onload = load;
+// run function onload
+window.onload = function () {
+    $("#smethod").val(getParam("method") || "MWL");
+};
